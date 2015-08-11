@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace DataConnector
 {
-    using Microsoft.AspNet.WebApi.MessageHandlers.Compression;
-    using Microsoft.AspNet.WebApi.MessageHandlers.Compression.Compressors;
-
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -26,7 +20,6 @@ namespace DataConnector
             // To disable tracing in your application, please comment out or remove the following line of code
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
-            GlobalConfiguration.Configuration.MessageHandlers.Insert(0, new ServerCompressionHandler(new GZipCompressor(), new DeflateCompressor()));
         }
     }
 }

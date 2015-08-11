@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web.Http;
+using DataConnector.App_Start;
+using Ninject;
+using Qualtrak.Coach.Integration.Core.Contracts;
 
 namespace DataConnector.Controllers
 {
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net.Http.Headers;
-    using System.Web.Http.Results;
-    using App_Start;
-    using Ninject;
-    using Qualtrak.Coach.DTO.Integration;
-    using Qualtrak.Coach.DTO.Integration.Contracts;
-
     public class StreamController : ApiController
     {
         private IList<MediaFileType> _listOfMediaFileTypes;
@@ -41,12 +37,12 @@ namespace DataConnector.Controllers
         }
 
         // GET api/<controller>
-        public System.Net.Http.HttpResponseMessage Get(string url)
+        public async Task<HttpResponseMessage> Get(string url)
         {
             var client = NinjectWebCommon.Kernel.Get<IApiFacade>();
             try
             {
-                var stream = client.GetStream(url);
+                var stream = await client.GetStreamAsync(url);
                 bool match = false;
                 HttpResponseMessage output;
 
