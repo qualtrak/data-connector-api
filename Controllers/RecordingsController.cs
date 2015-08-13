@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using DataConnector.App_Start;
 using DataConnector.Handler;
+using Newtonsoft.Json;
 using Ninject;
 using Qualtrak.Coach.Integration.Core.Contracts;
 using Qualtrak.Coach.Integration.Core.DTO;
@@ -35,17 +36,33 @@ namespace DataConnector.Controllers
         {
             var client = NinjectWebCommon.Kernel.Get<IApiFacade>();
             try
-            {   
+            {
                 var response = await client.GetRecordingsForUsersAsync(filter.Limit, filter.TenantCode, filter.UserIds, filter.SearchCriteria, filter.Username, filter.Password);
                 return response;
             }
             catch (Exception ex)
-            {   
+            {
                 Trace.TraceError("connector : [{0}]", ex.Message);
             }
 
-            // TODO: New empty list as a task
             return await Task.FromResult(new List<RecordingUser>());
+        }
+
+        [DeflateCompression]
+        public async Task<IEnumerable<RecordingInfo>> Put(RecordingsByIdsFilter filter)
+        {
+            var client = NinjectWebCommon.Kernel.Get<IApiFacade>();
+            try
+            {
+                var response = await client.GetRecordingsForRecordingIdsAsync(filter.RecordingIds, filter.TenantCode, filter.Username, filter.Password);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError("connector : [{0}]", ex.Message);
+            }
+
+            return await Task.FromResult(new List<RecordingInfo>());
         }
     }
 }
