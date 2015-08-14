@@ -1,8 +1,8 @@
-﻿namespace DataConnector.Handler
-{
-    using System.Net.Http;
-    using System.Web.Http.Filters;
+﻿using System.Net.Http;
+using System.Web.Http.Filters;
 
+namespace Qualtrak.Coach.DataConnector.Handler
+{
     public class DeflateCompressionAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(HttpActionExecutedContext actContext)

@@ -1,13 +1,13 @@
-﻿namespace DataConnector
-{
-    using System.Web;
-    using System.Web.Http;
+﻿using System.Web;
+using System.Web.Http;
 
+namespace Qualtrak.Coach.DataConnector
+{
     public class WebApiApplication : HttpApplication 
     {
         protected void Application_Start()
         {
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
 }

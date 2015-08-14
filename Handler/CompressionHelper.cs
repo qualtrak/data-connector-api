@@ -1,7 +1,7 @@
-﻿namespace DataConnector.Handler
-{
-    using System.IO;
+﻿using System.IO;
 
+namespace Qualtrak.Coach.DataConnector.Handler
+{
     public class CompressionHelper
     {
         public static byte[] DeflateByte(byte[] str)

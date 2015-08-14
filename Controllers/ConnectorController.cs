@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace DataConnector.Controllers
+namespace Qualtrak.Coach.DataConnector.Controllers
 {
     public class ConnectorController : ApiController
     {

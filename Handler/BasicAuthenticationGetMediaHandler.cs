@@ -1,14 +1,14 @@
-﻿namespace DataConnector.Handler
-{
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
-    using System.Web;
-    using System.Web.Configuration;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Web;
+using System.Web.Configuration;
 
+namespace Qualtrak.Coach.DataConnector.Handler
+{
     /// <summary>
     /// Developed for Rostrvm to handle urls that require basic authentication. The user credentails for the basic auth are in the web.config file:
     /// <code>

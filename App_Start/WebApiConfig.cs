@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using Newtonsoft.Json;
 
-namespace DataConnector
+namespace Qualtrak.Coach.DataConnector
 {
     public static class WebApiConfig
     {

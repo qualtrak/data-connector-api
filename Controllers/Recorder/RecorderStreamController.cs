@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
-using DataConnector.App_Start;
 using Ninject;
-using Qualtrak.Coach.Integration.Core.Contracts;
+using Qualtrak.Coach.DataConnector.Core.Recorder;
 
-namespace DataConnector.Controllers
+namespace Qualtrak.Coach.DataConnector.Controllers.Recorder
 {
-    public class StreamController : ApiController
+    [RoutePrefix("api")]
+    public class RecorderStreamController : ApiController
     {
-        private IList<MediaFileType> _listOfMediaFileTypes;
+        private readonly IList<MediaFileType> _listOfMediaFileTypes;
 
-        public StreamController()
+        public RecorderStreamController()
         {
             // TODO: Must test this list with all supported browsers (G. Kitchen)
-            _listOfMediaFileTypes = new List<MediaFileType>
+            this._listOfMediaFileTypes = new List<MediaFileType>
             {
                 new MediaFileType(".flv", "video/x-flv"),
                 new MediaFileType(".mp4", "video/mp4"),
@@ -36,17 +36,16 @@ namespace DataConnector.Controllers
             };
         }
 
-        // GET api/<controller>
-        public async Task<HttpResponseMessage> Get(string url)
+        [Route("recorder/stream")]
+        public async Task<HttpResponseMessage> GetAsync(string url)
         {
-            var client = NinjectWebCommon.Kernel.Get<IApiFacade>();
+            var client = NinjectWebCommon.Kernel.Get<IRecorderApiFacade>();
             try
             {
                 var stream = await client.GetStreamAsync(url);
                 bool match = false;
-                HttpResponseMessage output;
 
-                output = this.Request.CreateResponse(HttpStatusCode.OK);
+                var output = this.Request.CreateResponse(HttpStatusCode.OK);
                 output.Content = new StreamContent(stream);
                 output.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
 

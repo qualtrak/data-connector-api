@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataConnector</RootNamespace>
-    <AssemblyName>DataConnector</AssemblyName>
+    <RootNamespace>Qualtrak.Coach.DataConnector</RootNamespace>
+    <AssemblyName>Qualtrak.Coach.DataConnector</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -53,10 +53,6 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Qualtrak.Coach.Integration.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\Qualtrak.Coach.Integration.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -73,6 +69,10 @@
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Qualtrak.Coach.DataConnector.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Qualtrak.Coach.DataConnector.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -118,11 +118,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ConnectorController.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Handler\BasicAuthenticationGetMediaHandler.cs" />
-    <Compile Include="Controllers\RecordingsController.cs" />
-    <Compile Include="Controllers\ScoreController.cs" />
-    <Compile Include="Controllers\StreamController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\Recorder\RecorderMediaController.cs" />
+    <Compile Include="Controllers\Recorder\RecorderEvaluationScoreController.cs" />
+    <Compile Include="Controllers\Recorder\RecorderStreamController.cs" />
+    <Compile Include="Controllers\Recorder\RecorderUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,7 +134,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Lib\Qualtrak.Coach.Integration.Core.dll" />
+    <Content Include="Lib\Qualtrak.Coach.DataConnector.Core.dll" />
     <Content Include="Lib\System.Web.Mvc.dll" />
     <Content Include="ninject.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

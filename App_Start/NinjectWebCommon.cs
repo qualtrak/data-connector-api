@@ -1,15 +1,15 @@
 using System;
 using System.Web;
-using DataConnector.App_Start;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
+using Qualtrak.Coach.DataConnector;
 using WebActivatorEx;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
-namespace DataConnector.App_Start
+namespace Qualtrak.Coach.DataConnector
 {
     public static class NinjectWebCommon 
     {
