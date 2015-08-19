@@ -11,18 +11,20 @@ namespace Qualtrak.Coach.DataConnector.Controllers.Recorder
     [RoutePrefix("api")]
     public class RecorderEvaluationScoreController : BaseApiController
     {
-        [Route("recorder/evalutionscore")]
-        public async Task PostAsync(SendEvaluationScoreArgs args)
+        [Route("recorder/evaluationscore")]
+        public async Task<bool> PostAsync(SendEvaluationScoreArgs args)
         {
             var client = NinjectWebCommon.Kernel.Get<IRecorderApiFacade>();
 
             try
             {
-               await client.SendEvaluationScoreAsync(args, this.GetDataConnectorProperties());
+                await client.SendEvaluationScoreAsync(args, this.GetDataConnectorProperties());
+                return await Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 Trace.TraceError("connector : [{0}]", ex.Message);
+                return await Task.FromResult(false);
             }
         }
     }
