@@ -76,7 +76,7 @@ namespace Qualtrak.Coach.DataConnector.Controllers.Recorder
             var client = NinjectWebCommon.Kernel.Get<IRecorderApiFacade>();
             try
             {
-                var response = await client.GetMediaByIdsAsync(args.ids, this.GetDataConnectorProperties());
+                var response = await client.GetMediaByIdsAsync(args.Ids, this.GetDataConnectorProperties());
                 return response;
             }
             catch (Exception ex)
